@@ -4,7 +4,12 @@
 */
 
 function reverseString(str) {
-  // Tu solución acá  
+  // Tu solución acá
+  if (typeof str !== 'string') {
+    return 'No es un string';
+  } else {
+    return str.split('').reverse().join('');
+  }
 }
 
 /*
@@ -14,6 +19,11 @@ function reverseString(str) {
 */
 function isPalindrome(str) {
   // Tu solución acá
+  if (typeof str !== 'string') {
+    return 'No es un string';
+  } else {
+    return str === str.split('').reverse().join('');
+  }
 }
 
 /*
@@ -31,6 +41,24 @@ function isPalindrome(str) {
 
 function closestPair(arr) {
   // Tu solución acá
+  if (!Array.isArray(arr)) {
+    return 'No es un array';
+  } else {
+    arr.sort((a, b) => a - b);
+
+    let minimumDifference = Infinity;
+    let closestNumbers = [];
+
+    for (let i = 0; i < arr.length - 1; i++) {
+      const currentDifference = Math.abs(arr[i] - arr[i + 1]);
+      if (currentDifference < minimumDifference) {
+        minimumDifference = currentDifference;
+        closestNumbers = [arr[i], arr[i + 1]];
+      }
+    }
+
+    return closestNumbers;
+  }
 }
 
 
@@ -67,8 +95,50 @@ function closestPair(arr) {
 */
 
 class Calculator {
-  // Tu solución acá
+  constructor() {
+    this.lastResult = null;
+  }
+
+  add(a, b) {
+    const result = a + b;
+    this.lastResult = result;
+    return result;
+  }
+
+  subtract(a, b) {
+    const result = a - b;
+    this.lastResult = result;
+    return result;
+  }
+
+  multiply(a, b) {
+    const result = a * b;
+    this.lastResult = result;
+    return result;
+  }
+
+  divide(a, b) {
+    if (b === 0) {
+      throw new Error("Division by zero is not allowed");
+    }
+    const result = a / b;
+    this.lastResult = result;
+    return result;
+  }
+
+  getLastResult() {
+    return this.lastResult;
+  }
 }
+
+Calculator.prototype.exponentiate = function (base, exponent) {
+  if (exponent < 0) {
+    throw new Error("Exponentiation with negative exponent is not allowed");
+  }
+  const result = Math.pow(base, exponent);
+  this.lastResult = result;
+  return result;
+};
 
 module.exports = {
   closestPair,
