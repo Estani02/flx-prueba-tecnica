@@ -6,7 +6,7 @@ import { optionsStatus } from "@/constants/statusOptions"
 import { useAppDispatch } from "@/store/hooks"
 import { clearQuery, setQuery } from "@/store/slices/userSlice"
 
-export function UserFilter() {
+export function Filter() {
   const [selectedStatus, setSelectedStatus] = useState<UserStatus | undefined>()
   const dispatch = useAppDispatch()
 

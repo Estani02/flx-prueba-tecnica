@@ -1,21 +1,15 @@
 "use client"
-import { Layout, Breadcrumb, Space, Button } from "antd"
+import { Layout, Breadcrumb, Space } from "antd"
 
 import { useGetUsersQuery } from "@/api/userApi"
 import { LoadingSpinner } from "@/components/common/LoadingSpinner"
-import { useAppDispatch, useAppSelector } from "@/store/hooks"
-import { showModal } from "@/store/slices/modalSlice"
-import { UserSearch } from "@/components/layout/user/UserSearch"
-import { UserFilter } from "@/components/layout/user/UserFilter"
+import { useAppSelector } from "@/store/hooks"
 import { breadcrumbItems } from "@/constants/breadcrumbItems"
-import { UserTable } from "@/components/layout/user/UserTable"
-import { UserFormModal } from "@/components/layout/user/UserFormModal"
-import { DeleteUserModal } from "@/components/layout/user/DeleteUserModal"
+import { User } from "@/components/layout"
 
 export default function Home() {
   const userQuery = useAppSelector((state) => state.user.query)
   const queryString = new URLSearchParams(userQuery).toString()
-  const dispatch = useAppDispatch()
   const {
     data: users,
     error,
@@ -37,25 +31,17 @@ export default function Home() {
             <Breadcrumb className="my-4" items={breadcrumbItems} />
             <div className="mb-5 flex w-full justify-between">
               <Space direction="horizontal">
-                <UserSearch />
-                <UserFilter />
+                <User.Search />
+                <User.Filter />
               </Space>
-              <Button
-                size="large"
-                type="primary"
-                onClick={() => {
-                  dispatch(showModal({ modalName: "add" }))
-                }}
-              >
-                Agregar usuario
-              </Button>
+              <User.AddButton />
             </div>
-            <UserTable users={users || []} />
+            <User.Table users={users || []} />
           </>
         )}
       </Layout.Content>
-      <UserFormModal refetch={refetch} />
-      <DeleteUserModal refetch={refetch} />
+      <User.Modal.FormCreatorEditor refetch={refetch} />
+      <User.Modal.Delete refetch={refetch} />
     </>
   )
 }

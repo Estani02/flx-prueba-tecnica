@@ -1,10 +1,10 @@
-import { Button, Space, Table, Tag } from "antd"
+import { Button, Space, Table as TableAntd, Tag } from "antd"
 
 import { User, UserStatus } from "@/api/types"
 import { useAppDispatch } from "@/store/hooks"
 import { showModal } from "@/store/slices/modalSlice"
 
-export function UserTable({ users }: { users: User[] }) {
+export function Table({ users }: { users: User[] }) {
   const dispatch = useAppDispatch()
 
   const columns = [
@@ -61,5 +61,5 @@ export function UserTable({ users }: { users: User[] }) {
     },
   ]
 
-  return <Table columns={columns} dataSource={users} />
+  return <TableAntd columns={columns} dataSource={users} />
 }

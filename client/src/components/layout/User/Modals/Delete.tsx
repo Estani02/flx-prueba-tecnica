@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import { hideModal } from "@/store/slices/modalSlice"
 import { useDeleteUserMutation } from "@/api/userApi"
 
-export function DeleteUserModal({ refetch }: { refetch: () => void }) {
+export function Delete({ refetch }: { refetch: () => void }) {
   const dispatch = useAppDispatch()
   const selectedUser = useAppSelector((state) => state.modal.selectedUser)
   const isModalOpen = useAppSelector((state) => state.modal.isModalOpen)

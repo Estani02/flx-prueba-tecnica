@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import { hideModal } from "@/store/slices/modalSlice"
 import { useCreateUserMutation, useUpdateUserMutation } from "@/api/userApi"
 
-export function UserFormModal({ refetch }: { refetch: () => void }) {
+export function FormCreatorEditor({ refetch }: { refetch: () => void }) {
   const { control, handleSubmit, reset, setValue } = useForm<User>()
   const dispatch = useAppDispatch()
   const isModalOpen = useAppSelector((state) => state.modal.isModalOpen)

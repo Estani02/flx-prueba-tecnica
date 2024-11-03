@@ -1,10 +1,10 @@
-import Search from "antd/es/input/Search"
+import { Input } from "antd"
 import { useEffect, useState } from "react"
 
 import { useAppDispatch } from "@/store/hooks"
 import { clearQuery, setQuery } from "@/store/slices/userSlice"
 
-export function UserSearch() {
+export function Search() {
   const [searchTerm, setSearchTerm] = useState<string>("")
   const dispatch = useAppDispatch()
 
@@ -23,7 +23,7 @@ export function UserSearch() {
   }, [searchTerm, dispatch])
 
   return (
-    <Search
+    <Input.Search
       allowClear
       placeholder="Búsqueda por nombre o apellido"
       style={{ width: 290 }}
