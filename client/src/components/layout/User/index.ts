@@ -6,4 +6,4 @@ export * from "./Search"
 
 export * from "./Table"
 
-export * as Modal from "./Modals"
+export * as Modal from "./Modal"
